@@ -1,16 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { SearchBar } from '../Components/SearchBar/SearchBar';
 import { Inventory } from '../Components/Inventory/Inventory';
 import { MenuCtg } from '../Components/MenuCtg/MenuCtg';
 import { MenuCart } from '../Components/MenuCart/MenuCart';
 import { MenuLogIn } from '../Components/MenuLogin/MenuLogin';
+import { APIGetProduct } from './AppLogic';
+import { Product } from './Interfaces';
 
 function App(): JSX.Element {
   const [categMenuToggleSlideIn, setCategMenuToggleSlideIn] = useState(false);
   const [cartMenuToggleSlideIn, setCartMenuToggleSlideIn] = useState(false);
   const [loginMenuToggle, setLoginMenuToggle] = useState(false);
+  const [catalog, setCatalog] = useState<Product[]>([]);
 
+  useEffect(() => {
+    const getProducts = async () => {
+      const serverResponse = await APIGetProduct();
+      setCatalog(serverResponse);
+    };
+    getProducts();
+  }, []);
+
+  
   //======================================================================================================== Click Handlers
   const handleMenuBtnClick = function() {
     setCategMenuToggleSlideIn(!categMenuToggleSlideIn);
@@ -61,15 +73,7 @@ const toggleLoginMenu = function() {
         {categoriesMenuSlideIn()}
         {cartMenuSlideIn()}
         {toggleLoginMenu()}
-        <Inventory props={
-        [{
-        name: 'Authentic Terran Cats',
-        price: '500',
-        category: 'Live Animals',
-        img: require("../media/placeholder.jpg"),
-        bestSeller: true,
-        onSale: false
-        }]}
+        <Inventory props={catalog}
         />
        
       </main>

@@ -1,0 +1,100 @@
+{
+  "products": [
+       { 
+        "name": "Scroll of Wisdom",
+        "price": "2",
+        "category": "Potions & Consumables",
+        "img": "",
+        "bestSeller": true,
+        "onSale": false    
+        },
+        { 
+        "name": "Potion of healing",
+        "price": "25",
+        "category": "Potions & Consumables",
+        "img": "",
+        "bestSeller": true,
+        "onSale": false    
+        },
+        { 
+        "name": "Dragon scales",
+        "price": "485",
+        "category": "Ingredients",
+        "img": "",
+        "bestSeller": false,
+        "onSale": false    
+        },
+        {
+        "name": "Mandragore roots",
+        "price": "15",
+        "category": "Ingredients",
+        "img": "",
+        "bestSeller": false,
+        "onSale": true    
+        },
+        { 
+        "name": "Wand of the Apprentice",
+        "price": "4563",
+        "category": "Equipment",
+        "img": "",
+        "bestSeller": false,
+        "onSale": false    
+        },
+        { 
+        "name": "Fairy dust",
+        "price": "235",
+        "category": "Ingredients",
+        "img": "",
+        "bestSeller": true,
+        "onSale": true    
+        },
+        { 
+        "name": "Robes of fire resistance",
+        "price": "7563",
+        "category": "Equipment",
+        "img": "",
+        "bestSeller": false,
+        "onSale": true    
+        },
+        { 
+        "name": "Ring of the Squire",
+        "price": "1356",
+        "category": "Equipment",
+        "img": "",
+        "bestSeller": false,
+        "onSale": false    
+        },
+        { 
+        "name": "Beginner Alchemy set",
+        "price": "254",
+        "category": "Tools",
+        "img": "",
+        "bestSeller": false,
+        "onSale": false    
+        },
+        { 
+        "name": "Sacrificial knife (barely used)",
+        "price": "5",
+        "category": "Tools",
+        "img": "",
+        "bestSeller": false,
+        "onSale": true    
+        },
+        { 
+        "name": "Potion of water breathing",
+        "price": "145",
+        "category": "Potions & Consumables",
+        "img": "",
+        "bestSeller": false,
+        "onSale": false    
+        },
+        { 
+        "name": "Arcana Infinitum: the secrets of existence, by Theodus Maxilas",
+        "price": "235",
+        "category": "Books",
+        "img": "",
+        "bestSeller": true,
+        "onSale": false    
+        }
+    ]
+}

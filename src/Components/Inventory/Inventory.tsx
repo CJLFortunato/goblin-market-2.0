@@ -12,9 +12,8 @@ export function Inventory(props: Props) {
 
     return(
         <div className="inventory">
-            
+            {allItems.map((item, index) => <Item name={item.name} price={item.price} category={item.category} img={item.img} bestSeller={item.bestSeller} onSale={item.onSale} key={index}/>)}
         </div>
     );
 }
 
-//{allItems.map((item, index) => <Item item={item} key={index}/>)}
