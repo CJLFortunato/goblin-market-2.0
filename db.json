@@ -3,7 +3,7 @@
        { 
         "name": "Scroll of Wisdom",
         "price": "2",
-        "category": "Potions & Consumables",
+        "category": "Potions &amp; Consumables",
         "img": "",
         "bestSeller": true,
         "onSale": false    
@@ -11,7 +11,7 @@
         { 
         "name": "Potion of healing",
         "price": "25",
-        "category": "Potions & Consumables",
+        "category": "Potions &amp; Consumables",
         "img": "",
         "bestSeller": true,
         "onSale": false    
@@ -83,7 +83,7 @@
         { 
         "name": "Potion of water breathing",
         "price": "145",
-        "category": "Potions & Consumables",
+        "category": "Potions &amp; Consumables",
         "img": "",
         "bestSeller": false,
         "onSale": false    

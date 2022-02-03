@@ -1,16 +1,21 @@
 import React from 'react';
 
+interface Props {
+  searchFilter: (term: string) => void;
+}
 
-export function SearchBar(): JSX.Element {
-    const searchTerm: string = "";
+export function SearchBar({ searchFilter }: Props): JSX.Element {
+    let searchTerm: string = "";
 
     const onSearchTermChangeHandler = (e: any) => {
         const userInput = e.target.value;
-        
+        searchFilter(userInput);
+        searchTerm= userInput;
     };
 
     const onClearSearchTermHandler = () => {
-        
+      searchFilter("");
+      
     };
 
 
@@ -20,11 +25,11 @@ export function SearchBar(): JSX.Element {
             <input type="text" 
             placeholder="Search for an item" 
             id="search-input"
-            value={searchTerm}
+            
             onChange={onSearchTermChangeHandler}
             />
 
-            {searchTerm.length > 0 && (
+            
         <button
           onClick={onClearSearchTermHandler}
           type="button"
@@ -32,7 +37,7 @@ export function SearchBar(): JSX.Element {
         >
         X
         </button>
-      )}       
+           
         </div>
    );
 }

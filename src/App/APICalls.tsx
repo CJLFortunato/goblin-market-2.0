@@ -27,12 +27,11 @@ export const APIGetProduct = async (): Promise<Product[]> => {
 
 // POST clear all items in Cart
 
-// Filtering================================================
 
-// get current category and search term
 
-// Grab catalog, filter it by category and search term
 
-// return filtered array
+
+ 
+
 
 

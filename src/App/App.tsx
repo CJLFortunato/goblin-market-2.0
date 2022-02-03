@@ -5,7 +5,7 @@ import { Inventory } from '../Components/Inventory/Inventory';
 import { MenuCtg } from '../Components/MenuCtg/MenuCtg';
 import { MenuCart } from '../Components/MenuCart/MenuCart';
 import { MenuLogIn } from '../Components/MenuLogin/MenuLogin';
-import { APIGetProduct } from './AppLogic';
+import { APIGetProduct } from './APICalls';
 import { Product } from './Interfaces';
 
 function App(): JSX.Element {
@@ -13,6 +13,8 @@ function App(): JSX.Element {
   const [cartMenuToggleSlideIn, setCartMenuToggleSlideIn] = useState(false);
   const [loginMenuToggle, setLoginMenuToggle] = useState(false);
   const [catalog, setCatalog] = useState<Product[]>([]);
+  const [currentCategory, setCurrentCategory] = useState<string>("");
+  const [currentSearchTerm, setCurrentSearchTerm] = useState<string>("");
 
   useEffect(() => {
     const getProducts = async () => {
@@ -22,15 +24,24 @@ function App(): JSX.Element {
     getProducts();
   }, []);
 
+  const getCurrentCategory = (ctg: string) => {
+    setCurrentCategory(ctg);
+  };
+  
+  const getCurrentSearchTerm = (term: string) => {
+    setCurrentSearchTerm(term);
+    
+  };
+  
   
   //======================================================================================================== Click Handlers
   const handleMenuBtnClick = function() {
     setCategMenuToggleSlideIn(!categMenuToggleSlideIn);
-    console.log(categMenuToggleSlideIn);
+    
   }
   const handleCartBtnClick = function() {
     setCartMenuToggleSlideIn(!cartMenuToggleSlideIn);
-    console.log(cartMenuToggleSlideIn);
+    
   }
   const handleLoginBtnClick = function() {
     setLoginMenuToggle(!loginMenuToggle);
@@ -41,7 +52,7 @@ function App(): JSX.Element {
    if (!categMenuToggleSlideIn) {
      return;
   } 
-  return (<MenuCtg closeFunc={setCategMenuToggleSlideIn}/>);
+  return (<MenuCtg closeFunc={setCategMenuToggleSlideIn} categoryFilter={getCurrentCategory}/>);
  }
 
  const cartMenuSlideIn = function() {
@@ -64,7 +75,7 @@ const toggleLoginMenu = function() {
       <header className="App-header">
         <button id="menu-btn" onClick={handleMenuBtnClick}><i className="fas fa-bars"></i></button>
         <h1><i className="fas fa-balance-scale"></i> Goblin Market</h1>
-        <SearchBar />
+        <SearchBar searchFilter={getCurrentSearchTerm}/>
         <button id="act-btn" onClick={handleLoginBtnClick}><i className="fas fa-user-circle"></i></button>
         <button id="cart-btn" onClick={handleCartBtnClick}><i className="fas fa-shopping-cart"></i></button>
         
@@ -74,6 +85,8 @@ const toggleLoginMenu = function() {
         {cartMenuSlideIn()}
         {toggleLoginMenu()}
         <Inventory props={catalog}
+        currentCategory={currentCategory}
+        currentSearchTerm={currentSearchTerm}
         />
        
       </main>
