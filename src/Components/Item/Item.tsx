@@ -3,8 +3,9 @@ import { Product } from '../../App/Interfaces';
 //import image from '../../media/placeholder.jpg';
 
 interface Props {
-    name: string; price: string | number; category: string; img: any; bestSeller: boolean; onSale: boolean;
+    name: string; price: number; category: string; img: any; bestSeller: boolean; onSale: boolean;
     key: number;
+    addToCart: (itemName: string, itemPrice: number) => void;
 }
 
 export function Item(props: Props) {
@@ -21,6 +22,8 @@ export function Item(props: Props) {
    
 
     const onClickHandler = (inventoryItem: Product) => {
+        props.addToCart(inventoryItem.name, inventoryItem.price);
+        console.log("event fires");
     }
 
     return(

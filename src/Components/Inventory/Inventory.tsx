@@ -7,6 +7,7 @@ interface Props {
     props: Product[];
     currentCategory: string;
     currentSearchTerm: string;
+    addToCart: (itemName: string, itemPrice: number) => void;
 }
 
 export function Inventory(props: Props) {
@@ -49,7 +50,17 @@ export function Inventory(props: Props) {
 
     return(
         <div className="inventory">
-            {filteredItems.map((item, index) => <Item name={item.name} price={item.price} category={item.category} img={item.img} bestSeller={item.bestSeller} onSale={item.onSale} key={index}/>)}
+            {filteredItems.map((item, index) => 
+            <Item 
+            name={item.name} 
+            price={item.price} 
+            category={item.category} 
+            img={item.img} 
+            bestSeller={item.bestSeller} 
+            onSale={item.onSale} 
+            key={index}
+            addToCart={props.addToCart}
+            />)}
         </div>
     );
 }

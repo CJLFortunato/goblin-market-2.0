@@ -5,8 +5,8 @@ import { Inventory } from '../Components/Inventory/Inventory';
 import { MenuCtg } from '../Components/MenuCtg/MenuCtg';
 import { MenuCart } from '../Components/MenuCart/MenuCart';
 import { MenuLogIn } from '../Components/MenuLogin/MenuLogin';
-import { APIGetProduct } from './APICalls';
-import { Product } from './Interfaces';
+import { APIGetProduct, APIGetCart, APIPatchCart } from './APICalls';
+import { Product, CartProduct, RequestBody } from './Interfaces';
 
 function App(): JSX.Element {
   const [categMenuToggleSlideIn, setCategMenuToggleSlideIn] = useState(false);
@@ -15,6 +15,7 @@ function App(): JSX.Element {
   const [catalog, setCatalog] = useState<Product[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>("");
   const [currentSearchTerm, setCurrentSearchTerm] = useState<string>("");
+  const [cartContent, setCartContent] = useState<CartProduct[]>([]);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -22,6 +23,12 @@ function App(): JSX.Element {
       setCatalog(serverResponse);
     };
     getProducts();
+
+    const getCart = async () => {
+      const serverResponse = await APIGetCart();
+      setCartContent(serverResponse);
+    };
+    getCart();
   }, []);
 
   const getCurrentCategory = (ctg: string) => {
@@ -31,6 +38,26 @@ function App(): JSX.Element {
   const getCurrentSearchTerm = (term: string) => {
     setCurrentSearchTerm(term);
     
+  };
+
+  const addToCart = async (itemName: string, itemPrice: number) => {
+
+    
+
+    const itemToAdd: CartProduct = {
+      name: itemName,
+      price: itemPrice,
+      quantity: 1
+    }
+    const requestBody: RequestBody = {cart :[...cartContent, itemToAdd]};
+
+
+
+    const serverResponse = await APIPatchCart(itemToAdd);
+
+    console.log(requestBody);
+
+    setCartContent(serverResponse);
   };
   
   
@@ -59,7 +86,7 @@ function App(): JSX.Element {
   if (!cartMenuToggleSlideIn) {
     return;
  } 
-  return (<MenuCart closeFunc={setCartMenuToggleSlideIn}/>);
+  return (<MenuCart closeFunc={setCartMenuToggleSlideIn} cartContent={cartContent}/>);
 }
 
 const toggleLoginMenu = function() {
@@ -87,6 +114,7 @@ const toggleLoginMenu = function() {
         <Inventory props={catalog}
         currentCategory={currentCategory}
         currentSearchTerm={currentSearchTerm}
+        addToCart={addToCart}
         />
        
       </main>

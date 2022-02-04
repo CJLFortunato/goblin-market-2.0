@@ -1,6 +1,6 @@
 export interface Product {
     name: string;
-    price: string | number;
+    price: number;
     category: string;
     img: any;
     bestSeller: boolean;
@@ -8,3 +8,13 @@ export interface Product {
 }
 
 export type CloseFunction = React.Dispatch<React.SetStateAction<boolean>>;
+
+export interface CartProduct {
+    name: string;
+    price: number;
+    quantity: number;
+}
+
+export interface RequestBody {
+    cart: CartProduct[]
+  };
